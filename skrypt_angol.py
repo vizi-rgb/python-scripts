@@ -28,9 +28,9 @@ def swap_txt(lines):
 def sort_key(n):
     #sort method key for words containing polish letters
     tab = []
+    polish_alphabet = "aąbcćdeęfghijklłmnńoóprsśtuwyzźż"
+    d = {i:polish_alphabet.index(i) for i in polish_alphabet}
     for _ in n:
-        polish_alphabet = "aąbcćdeęfghijklłmnńoóprsśtuwyzźż"
-        d = {i:polish_alphabet.index(i) for i in polish_alphabet}
         if _ in d.keys():
             tab.append(d[_])
         else:
