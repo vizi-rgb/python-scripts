@@ -1,3 +1,4 @@
+#! /usr/bin/python
 import argparse	
 import secrets
 import string
@@ -18,7 +19,7 @@ def check(p):
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(prog='passgen', description='HELP')
-	parser.add_argument('-l', '--length', dest='length', nargs=1, type=int, choices=range(4,31),required=True, help='password length')
+	parser.add_argument('length', nargs=1, type=int, choices=range(4,31), help='password length')
 	parser.add_argument('-s', '--exclude-special', dest='special', action='store_true', help='exclude special characters from the password')
 	parser.add_argument('-d', '--exclude-digits', dest='digits', action='store_true', help='exclude digits form the password')
 	parser.add_argument('-L', '--exlude-lowercase', dest='lower', action='store_true', help='exclude lowercase characters from the password')
@@ -44,7 +45,6 @@ if __name__ == '__main__':
 	l = args.length[0] 
 	while True:
 		final_pass = ''.join(secrets.choice(alphabet) for i in range(l))
-		print(check(final_pass))
 
 		if args.special == False:
 			if len([x for x in SPECIAL_CHARS if x in final_pass]) <= 0:
