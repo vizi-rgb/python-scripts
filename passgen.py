@@ -25,20 +25,16 @@ if __name__ == '__main__':
 	parser.add_argument('-L', '--exlude-lowercase', dest='lower', action='store_true', help='exclude lowercase characters from the password')
 	parser.add_argument('-U', '--exclude-uppercase', dest='upper', action='store_true', help='exclude uppercase characters from the	password')
 	parser.add_argument('-i', '--include-simchars', dest='sim_chars', action='store_true', help='include similar looking characters such as i, I, l, 1, o, O, 0')
+	parser.add_argument('-1', dest='fchar', action='store_true', help='first char better be a letter')
 
 	args = parser.parse_args()
 
-
 	alphabet = '' 
 
-	if args.special == False:
-		alphabet += ''.join(SPECIAL_CHARS)
-	if args.digits == False:
-		alphabet += ''.join(NUMBERS)
-	if args.lower == False:
-		alphabet += ''.join(LOWER)
-	if args.upper == False:
-		alphabet += ''.join(UPPER)
+	if args.special == False: alphabet += ''.join(SPECIAL_CHARS)
+	if args.digits == False: alphabet += ''.join(NUMBERS)
+	if args.lower == False: alphabet += ''.join(LOWER)
+	if args.upper == False: alphabet += ''.join(UPPER)
 	if args.sim_chars == True and args.lower == False and args.upper == False and args.digits == False:
 		alphabet += ''.join(tab)
 
@@ -58,11 +54,12 @@ if __name__ == '__main__':
 		if args.upper == False:
 			if len([x for x in UPPER if x in final_pass]) <= 0:
 				continue 
+		if args.fchar == True:
+			if final_pass[0] not in LOWER and final_pass[0] not in UPPER:
+				continue
 		if check(final_pass) == True:
-			continue
-
+			continue 
 
 		break
-
 
 	print(final_pass)
