@@ -11,10 +11,11 @@ NUMBERS = list(filter(lambda a: a not in tab, string.digits))
 SPECIAL_CHARS = list(string.punctuation)
 
 def check(p):
+	i = 0 
 	for x in range(len(p)-1):
-		i = 0 
 		if p[i] == p[i+1]:
 			return True
+		i += 1
 	return False
 
 if __name__ == '__main__':
