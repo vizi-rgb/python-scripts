@@ -18,7 +18,7 @@ def check(p):
 		i += 1
 	return False
 
-if __name__ == '__main__':
+def main():
 	parser = argparse.ArgumentParser(prog='passgen', description='HELP')
 	parser.add_argument('length', nargs=1, type=int, choices=range(4,31), help='password length')
 	parser.add_argument('-s', '--exclude-special', dest='special', action='store_true', help='exclude special characters from the password')
@@ -64,3 +64,6 @@ if __name__ == '__main__':
 		break
 
 	print(final_pass)
+
+if __name__ == '__main__':
+	main()
